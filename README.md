@@ -1,10 +1,10 @@
 # Beam2D 
 
-Beam2D is a C++ game engine built on raylib 3.0 and OpenGl. It is meant to expand raylib 3.0 functionality past simple games using an entity component system, introducing common game engine features such as Game Objects, Scenes, Batch rendering and more.
+Beam2D is a C++ game engine built on raylib 3.0 and OpenGl. It is meant to expand raylib 3.0 functionality past simple games using an entity component system, while introducing common game engine features such as Game Objects, Scenes, and more.
 
 Still in early development
 
-### Todo:
+### To Implement:
 
 - [X] Game object base
 - [X] Input Manager
