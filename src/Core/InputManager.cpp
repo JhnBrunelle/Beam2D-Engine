@@ -1,7 +1,3 @@
-//
-// Created by John on 8/10/2020.
-//
-
 #include "InputManager.h"
 
 

@@ -1,6 +1,3 @@
-/**
- * File used to manage the user keyboard input
- */
 
 #include "Utils/Debug.hpp"
 #include "raylib.h"
@@ -8,9 +5,12 @@
 class InputManager {
 static InputManager *instance;
 public:
+
+    // Constructors
     InputManager();
     ~InputManager();
 
+    // Takes input
     void TakeInput();
 
     static InputManager *getInstance(){

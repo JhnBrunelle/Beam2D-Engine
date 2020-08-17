@@ -9,5 +9,17 @@ set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # or games
 
 add_subdirectory(libs/raylib)
 
-add_executable(BuildGame src/main.cpp src/Core/Utils/Debug.cpp src/Core/Utils/Debug.hpp src/Core/InputManager.cpp src/Core/InputManager.h src/Core/GameObject.cpp src/Core/GameObject.h src/BouncingBall.cpp src/BouncingBall.h)
+add_executable(BuildGame src/main.cpp
+        src/Core/Utils/Debug.cpp
+        src/Core/Utils/Debug.hpp
+        src/Core/InputManager.cpp
+        src/Core/InputManager.h
+        src/Core/GameObject.cpp
+        src/Core/GameObject.h
+        examples/bouncing-ball/BouncingBall.cpp
+        examples/bouncing-ball/BouncingBall.h
+        src/Core/Scenes/SceneManager.cpp
+        src/Core/Scenes/SceneManager.h)
+
+
 target_link_libraries(BuildGame PUBLIC raylib)

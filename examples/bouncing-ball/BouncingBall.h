@@ -1,7 +1,7 @@
 //
 // Created by John on 8/10/2020.
 //
-#include "Core/GameObject.h"
+#include "../../src/Core/GameObject.h"
 
 class BouncingBall : public GameObject {
 
