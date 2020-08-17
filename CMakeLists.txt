@@ -10,7 +10,6 @@ set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # or games
 add_subdirectory(libs/raylib)
 
 add_executable(BuildGame src/main.cpp
-        src/Core/Utils/Debug.cpp
         src/Core/Utils/Debug.hpp
         src/Core/InputManager.cpp
         src/Core/InputManager.h
