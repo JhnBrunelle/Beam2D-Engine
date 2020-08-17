@@ -13,7 +13,7 @@ Still in early development.
 - [X] Console debugger
 - [X] Screen Debugger
 - [X] Windows x64 build
-- [X] ECS system
+- [ ] ECS system
 - [ ] Audio Manager
 - [X] Scenes
 - [ ] Scene Manager
@@ -21,5 +21,6 @@ Still in early development.
 - [ ] Batch Renderer
 - [ ] Menu base
 - [ ] integrate IMGui 
-- [ ] Add WebGL built support
+- [X] Add WebGL build support (working, not pushed)
+- [X] Add Mac build support (working, not pushed)
 - [ ] Swap raylib for GFLW + GLEW
