@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Core/Utils/Debug.hpp"
 #include <string.h>
+#include <sstream>
 
 #include "Core/InputManager.h"
 #include "Core/GameObject.h"
@@ -20,7 +21,7 @@ int main(void) {
 
     // Define game settings
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(240);               // Set our game to run at 60 frames-per-second
 
     Debug::Log("Game settings initialized");
 
@@ -35,7 +36,9 @@ int main(void) {
     BouncingBall *bb2 = new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 4);
 
     s->AddObject("ball", bb);
-    s->AddObject("ball2", bb2);
+    s->AddObject("ball-", bb2);
+
+    int ballcount = 0;
 
     // Main Game Loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -46,6 +49,16 @@ int main(void) {
         // Input
         im->TakeInput();
 
+        // Scene test
+        if(IsKeyPressed(KEY_SPACE)) {
+            std::string toAdd = "ball" + std::to_string(ballcount);
+            s->AddObject(toAdd, new BouncingBall{"../assets/ball.png", 800 / 2, 450 / 2, 2});
+            ballcount++;
+        } else if(IsKeyPressed(KEY_ENTER)){
+            std::string toAdd = "ball" + std::to_string(ballcount);
+            s->RemoveObject(toAdd);
+            ballcount--;
+        }
 
         // Draw
         BeginDrawing();
@@ -54,8 +67,7 @@ int main(void) {
         ClearBackground(RAYWHITE);
 
         // Draw items
-        bb->Draw();
-        bb2->Draw();
+        s->BatchDraw();
 
         EndDrawing();
 
