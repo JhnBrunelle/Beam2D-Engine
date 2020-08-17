@@ -1,7 +1,8 @@
 #include "Scene.h"
 
 Scene::Scene(){
-    // Instance of DEBUG console
+    // Instance of a Debug Console
+    //@TODO - Add macro to remove for prod builds
    db = new DebugConsole();
 }
 
@@ -22,8 +23,11 @@ void Scene::AddObject(const std::string &id, GameObject* go){
  */
 GameObject* Scene::GetObject(const std::string &id){
 
-    //@TODO - add safety for it item is not in MAP
-    return ObjectLibrary[id];
+    if(ObjectLibrary.count(id)){
+        return ObjectLibrary[id];
+    } else {
+        db->ErrorMessage("Scene::GetObject(): Attempted to access unknown GameObject - " + id);
+    }
 }
 
 /**
@@ -33,13 +37,18 @@ GameObject* Scene::GetObject(const std::string &id){
  */
 void Scene::RemoveObject(const std::string &id){
 
-    //@TODO - add safety for it item is not in MAP
-    delete ObjectLibrary[id];
-    ObjectLibrary.erase(id);
+    if(ObjectLibrary.count(id)){
+        delete ObjectLibrary[id];
+        ObjectLibrary.erase(id);
+    } else {
+        db->ErrorMessage("Scene::RemoveObject(): Attempted to access unknown GameObject - " + id);
+    }
+
 }
 
 /**
- * Calls all the Updates in the scene
+ * Calls Update() on all the GameObjects in the map
+ * in order that they were added
  */
 void Scene::BatchUpdate() {
     std::map<std::string, GameObject*>::iterator itr;
@@ -51,6 +60,9 @@ void Scene::BatchUpdate() {
 }
 
 
+/**
+ * Calls Draw() on all of the GameObjects in order they were added to the map
+ */
 void Scene::BatchDraw() {
     std::map<std::string, GameObject*>::iterator itr;
     for (itr =  ObjectLibrary.begin(); itr !=  ObjectLibrary.end(); ++itr) {
@@ -58,9 +70,8 @@ void Scene::BatchDraw() {
         (itr->second)->Draw();
     }
 
-    // Draw Error Message
+    // Draw Error Message if available
     if(db->hasError){
-        std::cout << "I've been drawn!" << std::endl;
         db->DrawErrorConsole();
     }
 

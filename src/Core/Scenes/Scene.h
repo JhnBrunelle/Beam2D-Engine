@@ -4,19 +4,21 @@
 #include <map>
 
 class Scene {
-public:
+private:
+    DebugConsole *db;                                           // ptr to the debug console
     std::map<std::string, GameObject*> ObjectLibrary;           // Library of objects in the library
-    Scene();
+
+public:
+    Scene();                                                    // Default constructor
     void AddObject(const std::string &id, GameObject* go);      // Add an object to the scene
     void RemoveObject(const std::string &id);                   // Removes an object from the scene
     GameObject* GetObject(const std::string &id);               // Returns a game object
-    DebugConsole *db;
 
     // Batch operations
     void BatchUpdate();                                         // Update all objects in the scene
-    void BatchDraw();
+    void BatchDraw();                                           // Draw all objects in the scene
 
     // Getters
-    DebugConsole* GetDebugConsole();
+    DebugConsole* GetDebugConsole();                            // Return private Debug console
 };
 

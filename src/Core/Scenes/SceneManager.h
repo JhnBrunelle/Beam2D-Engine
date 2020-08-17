@@ -5,8 +5,13 @@
 #include "Scene.h"
 
 class SceneManager {
-public:
+private:
     std::unordered_map<std::string, Scene*> SceneLibrary;       // Library of Scenes in the library
+public:
+    std::unordered_map<std::string, Scene*>* GetSceneLibrary(); // Returns the Scene Library
 
+    // Scene Library editing functions
+    Scene* GetScene(const std::string &id);
+    void AddScene(const std::string &id, Scene *scene);
 };
 
