@@ -6,6 +6,7 @@
 #include "Core/InputManager.h"
 #include "Core/GameObject.h"
 #include "../examples/bouncing-ball/BouncingBall.h"
+#include "Core/Scenes/Scene.h"
 
 #include <list>
 
@@ -26,25 +27,21 @@ int main(void) {
     // Import input manager
     InputManager *im = new InputManager();
 
+    // Define Scenes
+    Scene *s = new Scene();
 
     // Draw Ball
     BouncingBall *bb = new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 2);
+    BouncingBall *bb2 = new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 4);
 
-    // Define scene objects & add objects to the scene
-    std::list<GameObject *> sceneObjects;
-    sceneObjects.push_back(bb);
-
+    s->AddObject("ball", bb);
+    s->AddObject("ball2", bb2);
 
     // Main Game Loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
-        // Update Objects
-        std::list<GameObject *>::iterator it;
-        for (it = sceneObjects.begin(); it != sceneObjects.end(); ++it) {
-            (*it)->Update();
-        }
-
+        s->BatchUpdate();
 
         // Input
         im->TakeInput();
@@ -57,10 +54,8 @@ int main(void) {
         ClearBackground(RAYWHITE);
 
         // Draw items
-        std::list<GameObject *>::iterator it2;
-        for (it2 = sceneObjects.begin(); it2 != sceneObjects.end(); ++it2) {
-            (*it2)->Draw();
-        }
+        bb->Draw();
+        bb2->Draw();
 
         EndDrawing();
 

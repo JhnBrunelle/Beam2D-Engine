@@ -18,7 +18,7 @@ add_executable(BuildGame src/main.cpp
         examples/bouncing-ball/BouncingBall.cpp
         examples/bouncing-ball/BouncingBall.h
         src/Core/Scenes/SceneManager.cpp
-        src/Core/Scenes/SceneManager.h)
+        src/Core/Scenes/SceneManager.h src/Core/Scenes/Scene.cpp src/Core/Scenes/Scene.h)
 
 
 target_link_libraries(BuildGame PUBLIC raylib)
