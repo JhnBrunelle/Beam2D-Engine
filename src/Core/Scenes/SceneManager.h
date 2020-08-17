@@ -1,18 +1,12 @@
 #pragma once
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <string>
-#include "../GameObject.h"
+#include "Scene.h"
 
 class SceneManager {
 public:
-    std::map<std::string, GameObject*> ObjectLibrary;       // Library of objects in the library
-
-    // Get object
-    GameObject*  GetObject(const std::string &id);
-
-    // Set Object
-    void AddObject(const std::string &id, GameObject *go);
+    std::unordered_map<std::string, Scene*> SceneLibrary;       // Library of Scenes in the library
 
 };
 

@@ -11,13 +11,15 @@ Still in early development.
 - [X] Game object base
 - [X] Input Manager
 - [X] Console debugger
+- [X] Screen Debugger
 - [X] Windows x64 build
 - [X] ECS system
 - [ ] Audio Manager
-- [ ] Swap raylib for GFLW + GLEW
-- [ ] Scenes
+- [X] Scenes
+- [ ] Scene Manager
 - [ ] TMX support
 - [ ] Batch Renderer
 - [ ] Menu base
 - [ ] integrate IMGui 
 - [ ] Add WebGL built support
+- [ ] Swap raylib for GFLW + GLEW

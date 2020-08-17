@@ -1,8 +1,8 @@
 #include "raylib.h"
 #include <iostream>
-#include "Core/Utils/Debug.hpp"
 #include <string.h>
 #include <sstream>
+
 
 #include "Core/InputManager.h"
 #include "Core/GameObject.h"
@@ -19,11 +19,11 @@
 
 int main(void) {
 
+    // Define Debug Console
+
     // Define game settings
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
-    SetTargetFPS(240);               // Set our game to run at 60 frames-per-second
-
-    Debug::Log("Game settings initialized");
+    SetTargetFPS(120);               // Set our game to run at 60 frames-per-second
 
     // Import input manager
     InputManager *im = new InputManager();
@@ -44,6 +44,7 @@ int main(void) {
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
+        // Update each item
         s->BatchUpdate();
 
         // Input
@@ -51,6 +52,7 @@ int main(void) {
 
         // Scene test
         if(IsKeyPressed(KEY_SPACE)) {
+            s->GetDebugConsole()->FatalErrorMessage("[!] Oh No! - " + std::to_string(ballcount));
             std::string toAdd = "ball" + std::to_string(ballcount);
             s->AddObject(toAdd, new BouncingBall{"../assets/ball.png", 800 / 2, 450 / 2, 2});
             ballcount++;
@@ -58,6 +60,8 @@ int main(void) {
             std::string toAdd = "ball" + std::to_string(ballcount);
             s->RemoveObject(toAdd);
             ballcount--;
+        } else if(IsKeyPressed(KEY_S)){
+            s->GetDebugConsole()->ClearConsole();
         }
 
         // Draw
@@ -66,13 +70,16 @@ int main(void) {
         // Background Clear
         ClearBackground(RAYWHITE);
 
-        // Draw items
+        // Draw item
+        DrawFPS(10,0);
         s->BatchDraw();
+
 
         EndDrawing();
 
+        //db->ErrorMessage("Oh NO!");
 
-        im->TakeInput();
+        //db->DrawErrorText("OH NO");
         //----------------------------------------------------------------------------------
     }
 

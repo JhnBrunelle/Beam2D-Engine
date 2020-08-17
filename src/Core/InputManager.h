@@ -1,5 +1,3 @@
-
-#include "Utils/Debug.hpp"
 #include "raylib.h"
 
 class InputManager {

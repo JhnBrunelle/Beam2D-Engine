@@ -1,5 +1,4 @@
 #include "BouncingBall.h"
-#include "../../src/Core/Utils/Debug.hpp"
 
 BouncingBall::BouncingBall(){
 
@@ -38,7 +37,6 @@ void BouncingBall::Draw(){
     DrawTextureEx(texture, position, 0.f, 0.5f, WHITE);
 
     if(debugOutline == true){
-        std::cout << "Debug Me" << std::endl;
         DrawRectangleLinesEx(this->GetBoundingBox(),1, RED);
     }
 }
