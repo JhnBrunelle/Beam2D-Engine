@@ -13,8 +13,7 @@ Still in early development.
 - [X] Console debugger
 - [X] Screen Debugger
 - [X] Windows x64 build
-- [ ] ECS system
-- [ ] Audio Manager
+- [X] ECS system
 - [X] Scenes
 - [X] Scene Manager
 - [ ] TMX support
