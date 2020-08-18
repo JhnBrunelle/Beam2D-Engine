@@ -20,5 +20,7 @@ public:
 
     // Getters
     DebugConsole* GetDebugConsole();                            // Return private Debug console
+
+    virtual void SceneLoop();                                           // Game loop per scene
 };
 

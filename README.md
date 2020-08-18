@@ -16,7 +16,7 @@ Still in early development.
 - [ ] ECS system
 - [ ] Audio Manager
 - [X] Scenes
-- [ ] Scene Manager
+- [X] Scene Manager
 - [ ] TMX support
 - [ ] Batch Renderer
 - [ ] Menu base

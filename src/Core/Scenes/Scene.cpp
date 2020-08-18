@@ -64,6 +64,10 @@ void Scene::BatchUpdate() {
  * Calls Draw() on all of the GameObjects in order they were added to the map
  */
 void Scene::BatchDraw() {
+
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+
     std::map<std::string, GameObject*>::iterator itr;
     for (itr =  ObjectLibrary.begin(); itr !=  ObjectLibrary.end(); ++itr) {
 
@@ -75,8 +79,21 @@ void Scene::BatchDraw() {
         db->DrawErrorConsole();
     }
 
+    if(db->FPSCounter){
+        DrawFPS(10,0);
+    }
+    EndDrawing();
+
 }
 
 DebugConsole* Scene::GetDebugConsole() {
     return db;
+}
+
+
+void Scene::SceneLoop(){
+
+    this->BatchUpdate();
+    this->BatchDraw();
+
 }

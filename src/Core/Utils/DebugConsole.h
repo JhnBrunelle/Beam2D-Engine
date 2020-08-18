@@ -14,6 +14,7 @@ private:
 
 public:
     bool hasError = false;
+    bool FPSCounter = true;
     DebugConsole();
     ~DebugConsole();
 

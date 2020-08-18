@@ -10,6 +10,7 @@
 
 // Game Object imports
 #include "../examples/bouncing-ball/BouncingBall.h"
+#include "Core/Scenes/SceneManager.h"
 
 
 #define SCREEN_WIDTH (800)
@@ -26,48 +27,38 @@ int main(void) {
     InputManager *im = new InputManager();
 
     // Define Scenes
-    Scene *s = new Scene();
+    Scene *s1 = new Scene();
+    Scene *s2 = new Scene();
 
     int ballcount = 0;
 
-    s->AddObject("ball1", new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 2));
-    s->AddObject("ball2", new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 4));
+    // Add objects to scene 1
+    s1->AddObject("ball1", new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 2));
+    s1->AddObject("ball2", new BouncingBall("../assets/ball.png", 800 / 2, 450 / 2, 4));
 
+    // Add Objects to Scene 2
+    s2->AddObject("S1", new BouncingBall("../assets/dog.png", 800 / 2, 450 / 2, 2));
+
+    // new scene manager
+    SceneManager *sm = new SceneManager();
+
+    sm->AddScene("first", s1);
+    sm->AddScene("second", s2);
     // Main Game Loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
-        // Update each item
-        s->BatchUpdate();
-
-        // Input
-        im->TakeInput();
-
-        // Scene test
+        // Scenes test
         if(IsKeyPressed(KEY_SPACE)) {
-            std::string toAdd = "ball" + std::to_string(ballcount);
-            s->AddObject(toAdd, new BouncingBall{"../assets/ball.png", 800 / 2, 450 / 2, 2});
-            ballcount++;
+            sm->LoadScene("second");
         } else if(IsKeyPressed(KEY_ENTER)){
-            std::string toAdd = "ball" + std::to_string(ballcount);
-            s->RemoveObject(toAdd);
-            ballcount--;
+            sm->LoadScene("first");
+
         } else if(IsKeyPressed(KEY_S)){
 
         }
 
-        // Draw
-        BeginDrawing();
-
-        // Background Clear
-        ClearBackground(RAYWHITE);
-
-        // Draw item
-        DrawFPS(10,0);
-        s->BatchDraw();
-
-
-        EndDrawing();
+        sm->ActiveSceneLoop();
 
     }
 
